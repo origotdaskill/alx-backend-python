@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
-""" More involved type annotations  """
-from typing import Mapping, Any, Sequence, Union, TypeVar
+""" Type Checking  """
+from typing import Tuple, List
 
 
-T = TypeVar('T')
+def zoom_array(lst: Tuple, factor: int = 2) -> List:
+    """ Zoom Array """
+    zoomed_in: List = [
+        item for item in lst
+        for i in range(factor)
+    ]
+    return zoomed_in
 
 
-def safely_get_value(dct: Mapping, key: Any,
-                     default: Union[T, None] = None
-                     ) -> Union[Any, T]:
-    """ Safely get value """
-    if key in dct:
-        return dct[key]
-    else:
-        return default
+array = (12, 72, 91)
+
+zoom_2x = zoom_array(array)
+
+zoom_3x = zoom_array(array, 3)
